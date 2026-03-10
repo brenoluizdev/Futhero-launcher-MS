@@ -1,0 +1,57 @@
+name: Build MSI (Tauri)
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  windows-msi:
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        working-directory: LAUNCHER
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: LAUNCHER/package-lock.json
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@v1
+        with:
+          toolchain: 1.77.2
+
+      - name: Install WiX
+        run: choco install wixtoolset --no-progress -y
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build MSI
+        run: npm run tauri -- build -- --bundles msi
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: msi
+          path: |
+            LAUNCHER/src-tauri/target/release/bundle/msi/*.msi
+
+      - name: Upload to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            LAUNCHER/src-tauri/target/release/bundle/msi/*.msi
