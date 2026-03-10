@@ -13,20 +13,24 @@ jobs:
   windows-msi:
     runs-on: windows-latest
 
-    defaults:
-      run:
-        working-directory: LAUNCHER
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Detect launcher directory
+        id: paths
+        shell: pwsh
+        run: |
+          if (Test-Path (Join-Path $env:GITHUB_WORKSPACE 'LAUNCHER\package.json')) {
+            "workdir=LAUNCHER" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          } else {
+            "workdir=." | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+          }
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
-          cache-dependency-path: LAUNCHER/package-lock.json
 
       - name: Setup Rust
         uses: dtolnay/rust-toolchain@v1
@@ -37,9 +41,11 @@ jobs:
         run: choco install wixtoolset --no-progress -y
 
       - name: Install dependencies
+        working-directory: ${{ steps.paths.outputs.workdir }}
         run: npm ci
 
       - name: Build MSI
+        working-directory: ${{ steps.paths.outputs.workdir }}
         run: npm run tauri -- build -- --bundles msi
 
       - name: Upload artifact
@@ -47,11 +53,11 @@ jobs:
         with:
           name: msi
           path: |
-            LAUNCHER/src-tauri/target/release/bundle/msi/*.msi
+            ${{ steps.paths.outputs.workdir }}/src-tauri/target/release/bundle/msi/*.msi
 
       - name: Upload to GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            LAUNCHER/src-tauri/target/release/bundle/msi/*.msi
+            ${{ steps.paths.outputs.workdir }}/src-tauri/target/release/bundle/msi/*.msi
