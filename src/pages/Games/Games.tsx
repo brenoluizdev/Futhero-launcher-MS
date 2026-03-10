@@ -6,11 +6,11 @@ export function Games() {
   const { launchGame } = useGameLauncher()
 
   return (
-    <div className="mx-auto max-w-7xl">
+    <div className="mx-auto w-full max-w-[1400px]">
       <div className="mb-5">
-        <div className="text-sm font-semibold tracking-wide text-white/70">Games</div>
-        <h2 className="mt-1 text-2xl font-semibold text-white">Choose your arena</h2>
-        <p className="mt-2 max-w-3xl text-sm text-white/65">
+        <div className="text-sm font-semibold tracking-wide text-muted-foreground">Games</div>
+        <h2 className="mt-1 text-2xl font-semibold text-foreground font-gaming">Choose your arena</h2>
+        <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
           These are official websites opened inside the app. No hosting, no redistribution.
         </p>
       </div>
@@ -23,4 +23,3 @@ export function Games() {
     </div>
   )
 }
-

@@ -22,7 +22,7 @@ function AppFrame() {
       ) : (
         <>
           <Navbar title="Futhero Launcher" />
-          <div className="mx-auto flex max-w-7xl gap-0">
+          <div className="flex w-full gap-0">
             <Sidebar />
             <main className="min-w-0 flex-1 px-4 py-6">
               <Routes>

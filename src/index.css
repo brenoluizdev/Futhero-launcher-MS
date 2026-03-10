@@ -1,9 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   color-scheme: dark;
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 96%;
+  --popover: 0 0% 9%;
+  --popover-foreground: 0 0% 96%;
+  --primary: 24 100% 50%;
+  --primary-foreground: 0 0% 98%;
+  --primary-glow: 24 100% 60%;
+  --secondary: 0 0% 11%;
+  --secondary-foreground: 0 0% 90%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 62%;
+  --accent: 30 100% 55%;
+  --accent-foreground: 0 0% 4%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 96%;
+  --border: 0 0% 18%;
+  --input: 0 0% 14%;
+  --ring: 24 100% 50%;
+  --radius: 0.75rem;
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --bg-glow-1: radial-gradient(900px 640px at 20% 10%, hsl(var(--primary) / 0.1), transparent 62%);
+  --bg-glow-2: radial-gradient(900px 700px at 85% 25%, hsl(var(--primary-glow) / 0.07), transparent 64%);
+  --bg-grid-x: linear-gradient(to right, hsl(var(--foreground) / 0.025) 1px, transparent 1px);
+  --bg-grid-y: linear-gradient(to bottom, hsl(var(--foreground) / 0.025) 1px, transparent 1px);
+
+  --gradient-hero: var(--bg-glow-1), var(--bg-glow-2);
+  --gradient-card: radial-gradient(650px 420px at 0% 0%, hsl(var(--primary) / 0.07), transparent 60%),
+    linear-gradient(180deg, hsl(var(--card) / 0.92), hsl(var(--card) / 0.76));
+  --gradient-border: linear-gradient(
+    90deg,
+    hsl(var(--primary) / 0.3),
+    hsl(var(--primary-glow) / 0.18),
+    hsl(var(--primary) / 0.3)
+  );
+
+  --shadow-glow-primary: 0 0 0 1px hsl(var(--primary) / 0.18), 0 14px 46px hsl(0 0% 0% / 0.72);
+  --shadow-glow-soft: 0 12px 34px hsl(0 0% 0% / 0.58);
+  --shadow-elevated: 0 1px 0 hsl(var(--border) / 0.7), 0 14px 44px hsl(0 0% 0% / 0.72);
 }
 
 html,
@@ -13,12 +56,12 @@ body {
 
 body {
   margin: 0;
-  background: radial-gradient(1200px 900px at 0% 0%, rgba(124, 92, 255, 0.18), transparent 60%),
-    radial-gradient(900px 700px at 100% 0%, rgba(34, 211, 238, 0.12), transparent 55%),
-    radial-gradient(1200px 900px at 50% 120%, rgba(34, 211, 238, 0.08), transparent 60%),
-    #070a12;
-  color: rgba(255, 255, 255, 0.92);
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji',
+  background-color: hsl(var(--background));
+  background-image: var(--bg-glow-1), var(--bg-glow-2), var(--bg-grid-x), var(--bg-grid-y);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+  color: hsl(var(--foreground) / 0.92);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji',
     'Segoe UI Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,4 +74,40 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.bg-gradient-hero {
+  background-color: hsl(var(--background));
+  background-image: var(--bg-glow-1), var(--bg-glow-2), var(--bg-grid-x), var(--bg-grid-y);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+  background-repeat: no-repeat, no-repeat, repeat, repeat;
+}
+
+.bg-gradient-card {
+  background: var(--gradient-card);
+}
+
+.bg-gradient-border {
+  background: var(--gradient-border);
+}
+
+.shadow-glow-primary {
+  box-shadow: var(--shadow-glow-primary);
+}
+
+.shadow-glow-soft {
+  box-shadow: var(--shadow-glow-soft);
+}
+
+.shadow-elevated {
+  box-shadow: var(--shadow-elevated);
+}
+
+.transition-smooth {
+  transition: var(--transition-smooth);
+}
+
+.font-gaming {
+  font-family: Orbitron, Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  letter-spacing: 0.06em;
 }

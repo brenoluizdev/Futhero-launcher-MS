@@ -9,13 +9,13 @@ type GameCardProps = {
 export function GameCard({ game, onPlay }: GameCardProps) {
   const accent =
     game.accent === 'cyan'
-      ? 'from-accent-500/25 to-white/0'
-      : 'from-neon-500/25 to-white/0'
+      ? 'from-primary-glow/25 to-white/0'
+      : 'from-primary/25 to-white/0'
 
   const chip =
     game.accent === 'cyan'
-      ? 'bg-accent-500/15 text-accent-400 ring-1 ring-accent-500/20'
-      : 'bg-neon-500/15 text-neon-300 ring-1 ring-neon-500/25'
+      ? 'bg-primary-glow/15 text-primary-glow ring-1 ring-primary-glow/25'
+      : 'bg-primary/15 text-primary ring-1 ring-primary/25'
 
   return (
     <motion.div
@@ -24,24 +24,24 @@ export function GameCard({ game, onPlay }: GameCardProps) {
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.45 }}
       whileHover={{ y: -6 }}
-      className="group relative overflow-hidden rounded-xl2 border border-white/10 bg-panel-900 shadow-soft"
+      className="group relative overflow-hidden rounded-xl2 border border-border/60 bg-gradient-card shadow-glow-soft"
     >
       <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${accent}`} />
       <div className="relative p-5">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="h-12 w-20 overflow-hidden rounded-2xl bg-white/5 ring-1 ring-white/10">
+            <div className="h-12 w-20 overflow-hidden rounded-2xl bg-secondary/40 ring-1 ring-border/60">
               <img
                 src={game.thumbnailSrc}
                 alt={`${game.name} thumbnail`}
-                className="h-full w-full object-cover opacity-85 transition group-hover:opacity-100"
+                className="h-full w-full object-cover opacity-85 transition-smooth group-hover:opacity-100"
                 loading="lazy"
               />
             </div>
 
             <div>
-              <div className="text-base font-semibold text-white">{game.name}</div>
-              <div className="mt-1 text-xs text-white/60">{game.url}</div>
+              <div className="text-base font-semibold text-foreground">{game.name}</div>
+              <div className="mt-1 text-xs text-muted-foreground">{game.url}</div>
             </div>
           </div>
 
@@ -50,20 +50,20 @@ export function GameCard({ game, onPlay }: GameCardProps) {
           </div>
         </div>
 
-        <div className="mt-4 text-sm leading-relaxed text-white/75">{game.description}</div>
+        <div className="mt-4 text-sm leading-relaxed text-foreground/80">{game.description}</div>
 
         <div className="mt-5 flex items-center justify-between gap-3">
-          <div className="text-xs text-white/50">Launch inside WebView</div>
+          <div className="text-xs text-muted-foreground">Launch inside WebView</div>
           <button
             type="button"
             onClick={() => onPlay(game)}
-            className="rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/15 active:translate-y-px"
+            className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-smooth hover:bg-orange-400 active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
           >
             Play
           </button>
         </div>
       </div>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition group-hover:opacity-100" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-border opacity-0 transition-smooth group-hover:opacity-100" />
     </motion.div>
   )
 }

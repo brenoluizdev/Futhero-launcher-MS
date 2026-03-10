@@ -119,20 +119,20 @@ export function Play() {
   if (!game) {
     return (
       <div className="grid min-h-screen place-items-center p-6">
-        <div className="w-full max-w-lg rounded-xl2 border border-white/10 bg-panel-900 p-6 shadow-soft">
-          <div className="text-lg font-semibold text-white">Game not found</div>
-          <div className="mt-2 text-sm text-white/70">The selected game is not available.</div>
+        <div className="w-full max-w-lg rounded-xl2 border border-border/60 bg-gradient-card p-6 shadow-glow-soft">
+          <div className="text-lg font-semibold text-foreground">Game not found</div>
+          <div className="mt-2 text-sm text-muted-foreground">The selected game is not available.</div>
           <div className="mt-4 flex gap-2">
             <button
               type="button"
               onClick={() => navigate('/games')}
-              className="rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold text-white transition hover:bg-white/15"
+              className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-smooth hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
             >
               Back
             </button>
             <Link
               to="/"
-              className="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+              className="rounded-lg border border-border/70 bg-secondary/55 px-4 py-2 text-sm font-semibold text-foreground/85 transition-smooth hover:bg-secondary/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
             >
               Home
             </Link>
@@ -144,22 +144,22 @@ export function Play() {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <div className="flex h-14 items-center gap-3 border-b border-white/10 bg-bg-900/60 px-4 backdrop-blur">
+      <div className="flex h-14 items-center gap-3 border-b border-border/60 bg-background/70 px-4 backdrop-blur shadow-elevated">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={handleBack}
-            className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+            className="rounded-lg border border-border/70 bg-secondary/55 px-3 py-2 text-sm font-semibold text-foreground/85 transition-smooth hover:bg-secondary/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
           >
             Back
           </button>
-          <div className="text-sm font-semibold text-white">{game.name}</div>
+          <div className="text-sm font-semibold text-foreground">{game.name}</div>
         </div>
       </div>
 
       <div className="flex-1">
         {isTauriApp() ? (
-          <div className="grid h-full w-full place-items-center text-sm text-white/60">
+          <div className="grid h-full w-full place-items-center text-sm text-muted-foreground">
             Loading…
           </div>
         ) : (
