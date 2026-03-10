@@ -1,25 +1,28 @@
 import { NavLink } from 'react-router-dom'
+import { useI18n } from '../../i18n'
 import { cn } from '../../utils/cn'
 
 type SidebarItem = {
-  label: string
+  labelKey: 'nav.home' | 'nav.games' | 'nav.settings' | 'nav.about'
   to: string
 }
 
 const ITEMS: readonly SidebarItem[] = [
-  { label: 'Home', to: '/' },
-  { label: 'Games', to: '/games' },
-  { label: 'Settings', to: '/settings' },
-  { label: 'About', to: '/about' },
+  { labelKey: 'nav.home', to: '/' },
+  { labelKey: 'nav.games', to: '/games' },
+  { labelKey: 'nav.settings', to: '/settings' },
+  { labelKey: 'nav.about', to: '/about' },
 ]
 
 export function Sidebar() {
+  const { t } = useI18n()
+
   return (
     <aside className="w-64 shrink-0">
       <div className="sticky top-16 h-[calc(100vh-4rem)] px-4 py-6">
         <div className="rounded-xl2 border border-border/60 bg-gradient-card p-3 shadow-glow-soft">
           <div className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            Menu
+            {t('nav.menu')}
           </div>
 
           <nav className="flex flex-col gap-1">
@@ -37,7 +40,7 @@ export function Sidebar() {
                   )
                 }
               >
-                {item.label}
+                {t(item.labelKey)}
               </NavLink>
             ))}
           </nav>

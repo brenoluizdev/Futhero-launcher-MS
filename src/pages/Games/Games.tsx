@@ -1,17 +1,19 @@
 import { GameCard } from '../../components/GameCard/GameCard'
 import { useGameLauncher } from '../../hooks/useGameLauncher'
+import { useI18n } from '../../i18n'
 import { GAMES } from '../../utils/games'
 
 export function Games() {
   const { launchGame } = useGameLauncher()
+  const { t } = useI18n()
 
   return (
     <div className="mx-auto w-full max-w-[1400px]">
       <div className="mb-5">
-        <div className="text-sm font-semibold tracking-wide text-muted-foreground">Games</div>
-        <h2 className="mt-1 text-2xl font-semibold text-foreground font-gaming">Choose your arena</h2>
+        <div className="text-sm font-semibold tracking-wide text-muted-foreground">{t('games.kicker')}</div>
+        <h2 className="mt-1 text-2xl font-semibold text-foreground font-gaming">{t('games.title')}</h2>
         <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
-          These are official websites opened inside the app. No hosting, no redistribution.
+          {t('games.subtitle')}
         </p>
       </div>
 

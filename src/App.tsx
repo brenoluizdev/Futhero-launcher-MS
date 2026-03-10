@@ -2,6 +2,7 @@ import { HashRouter, Navigate, Route, Routes, useLocation } from 'react-router-d
 import { Footer } from './components/Footer/Footer'
 import { Navbar } from './components/Navbar/Navbar'
 import { Sidebar } from './components/Sidebar/Sidebar'
+import { I18nProvider, useI18n } from './i18n'
 import { About } from './pages/About/About'
 import { Games } from './pages/Games/Games'
 import { Home } from './pages/Home/Home'
@@ -9,6 +10,7 @@ import { Play } from './pages/Play/Play'
 import { Settings } from './pages/Settings/Settings'
 
 function AppFrame() {
+  const { t } = useI18n()
   const location = useLocation()
   const isPlayRoute = location.pathname.startsWith('/play/')
 
@@ -21,7 +23,7 @@ function AppFrame() {
         </Routes>
       ) : (
         <>
-          <Navbar title="Futhero Launcher" />
+          <Navbar title={t('app.title')} />
           <div className="flex w-full gap-0">
             <Sidebar />
             <main className="min-w-0 flex-1 px-4 py-6">
@@ -43,8 +45,10 @@ function AppFrame() {
 
 export default function App() {
   return (
-    <HashRouter>
-      <AppFrame />
-    </HashRouter>
+    <I18nProvider>
+      <HashRouter>
+        <AppFrame />
+      </HashRouter>
+    </I18nProvider>
   )
 }

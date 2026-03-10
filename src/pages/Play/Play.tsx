@@ -1,11 +1,13 @@
 import { useEffect, useMemo } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useI18n } from '../../i18n'
 import { getGameById } from '../../utils/games'
 import { isTauriApp } from '../../utils/tauri'
 
 export function Play() {
   const { gameId } = useParams()
   const navigate = useNavigate()
+  const { t } = useI18n()
 
   const game = useMemo(() => getGameById(gameId), [gameId])
   const gameKey = game?.id
@@ -120,21 +122,21 @@ export function Play() {
     return (
       <div className="grid min-h-screen place-items-center p-6">
         <div className="w-full max-w-lg rounded-xl2 border border-border/60 bg-gradient-card p-6 shadow-glow-soft">
-          <div className="text-lg font-semibold text-foreground">Game not found</div>
-          <div className="mt-2 text-sm text-muted-foreground">The selected game is not available.</div>
+          <div className="text-lg font-semibold text-foreground">{t('play.notFound.title')}</div>
+          <div className="mt-2 text-sm text-muted-foreground">{t('play.notFound.body')}</div>
           <div className="mt-4 flex gap-2">
             <button
               type="button"
               onClick={() => navigate('/games')}
               className="rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-smooth hover:bg-orange-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
             >
-              Back
+              {t('play.back')}
             </button>
             <Link
               to="/"
               className="rounded-lg border border-border/70 bg-secondary/55 px-4 py-2 text-sm font-semibold text-foreground/85 transition-smooth hover:bg-secondary/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
             >
-              Home
+              {t('play.notFound.home')}
             </Link>
           </div>
         </div>
@@ -151,7 +153,7 @@ export function Play() {
             onClick={handleBack}
             className="rounded-lg border border-border/70 bg-secondary/55 px-3 py-2 text-sm font-semibold text-foreground/85 transition-smooth hover:bg-secondary/75 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
           >
-            Back
+            {t('play.back')}
           </button>
           <div className="text-sm font-semibold text-foreground">{game.name}</div>
         </div>
@@ -160,7 +162,7 @@ export function Play() {
       <div className="flex-1">
         {isTauriApp() ? (
           <div className="grid h-full w-full place-items-center text-sm text-muted-foreground">
-            Loading…
+            {t('play.loading')}
           </div>
         ) : (
           <iframe
