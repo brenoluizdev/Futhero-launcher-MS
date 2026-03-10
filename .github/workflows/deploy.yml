@@ -46,7 +46,7 @@ jobs:
 
       - name: Build MSI
         working-directory: ${{ steps.paths.outputs.workdir }}
-        run: npm run tauri -- build -- --bundles msi
+        run: npm run tauri -- build --bundles msi
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
