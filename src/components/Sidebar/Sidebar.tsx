@@ -20,12 +20,10 @@ export function Sidebar() {
   return (
     <aside className="w-64 shrink-0">
       <div className="sticky top-16 h-[calc(100vh-4rem)] px-4 py-6">
-        <div className="rounded-xl2 border border-border/60 bg-gradient-card p-3 shadow-glow-soft">
-          <div className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            {t('nav.menu')}
-          </div>
+        <div className="flex h-full w-full flex-col rounded-xl2 border border-border/60 bg-gradient-card p-3 shadow-glow-soft">
+          <div className="px-3 pb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">{t('nav.menu')}</div>
 
-          <nav className="flex flex-col gap-1">
+          <nav className="flex flex-1 flex-col gap-1">
             {ITEMS.map((item) => (
               <NavLink
                 key={item.to}
