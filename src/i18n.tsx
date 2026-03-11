@@ -8,6 +8,12 @@ const translations = {
   pt: {
     'app.title': 'Futhero Launcher',
 
+    'api.status.connected': 'Conectado à API',
+    'api.status.slow': 'Conexão lenta com a API',
+    'api.status.disconnected': 'Sem conexão com a API',
+    'api.status.checking': 'Verificando conexão com a API…',
+    'api.status.latency': '{ms}ms',
+
     'nav.home': 'Início',
     'nav.games': 'Jogos',
     'nav.settings': 'Configurações',
@@ -108,6 +114,12 @@ const translations = {
   es: {
     'app.title': 'Futhero Launcher',
 
+    'api.status.connected': 'Conectado a la API',
+    'api.status.slow': 'Conexión lenta con la API',
+    'api.status.disconnected': 'Sin conexión con la API',
+    'api.status.checking': 'Verificando conexión con la API…',
+    'api.status.latency': '{ms}ms',
+
     'nav.home': 'Inicio',
     'nav.games': 'Juegos',
     'nav.settings': 'Configuración',
@@ -207,6 +219,12 @@ const translations = {
   },
   en: {
     'app.title': 'Futhero Launcher',
+
+    'api.status.connected': 'Connected to API',
+    'api.status.slow': 'Slow connection to API',
+    'api.status.disconnected': 'No connection to API',
+    'api.status.checking': 'Checking API connection…',
+    'api.status.latency': '{ms}ms',
 
     'nav.home': 'Home',
     'nav.games': 'Games',
